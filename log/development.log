@@ -1,0 +1,1957 @@
+  [1m[36m (3.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.3ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateUsers (20150925133350)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (5.8ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150925133350"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateManufacturers (20150925133827)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (4.1ms)[0m  [1mCREATE TABLE "manufacturers" ("id" serial primary key, "name" character varying NOT NULL, "country" character varying NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX  "index_manufacturers_on_name" ON "manufacturers"  ("name")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150925133827"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (4.2ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'manufacturers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateManufacturers (20150925133827)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.9ms)[0m  DROP INDEX "index_manufacturers_on_name"
+  [1m[36m (1.2ms)[0m  [1mDROP TABLE "manufacturers"[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1  [["version", "20150925133827"]]
+  [1m[36m (1.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.5ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateManufacturers (20150925133827)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (4.9ms)[0m  [1mCREATE TABLE "manufacturers" ("id" serial primary key, "name" character varying NOT NULL, "country" character varying NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX  "index_manufacturers_on_name" ON "manufacturers"  ("name")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150925133827"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (3.6ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'manufacturers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCars (20150925140532)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (6.7ms)[0m  [1mCREATE TABLE "cars" ("id" serial primary key, "color" character varying NOT NULL, "year" integer NOT NULL, "mileage" integer NOT NULL, "description" character varying, "manufacturer_id" integer) [0m
+  [1m[35m (0.8ms)[0m  CREATE  INDEX  "index_cars_on_manufacturer_id" ON "cars"  ("manufacturer_id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150925140532"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (3.7ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'cars'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'manufacturers'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 10:29:38 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ManufacturersController#index as HTML
+  [1m[35mManufacturer Load (3.0ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered manufacturers/index.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 6472ms (Views: 6463.1ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-09-25 10:29:48 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (75.2ms)
+Completed 200 OK in 143ms (Views: 137.1ms | ActiveRecord: 3.8ms)
+
+
+Started POST "/manufacturers" for ::1 at 2015-09-25 10:29:53 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+QM9Nc6dUACnBI3nONPADJV0zeq79T/Pc7MO39T1zoEpU9CpExajr10YSM67nG9H33ztXPYJT4c6g0CKNnVLhA==", "manufacturer"=>{"name"=>"Dodge", "country"=>"USA"}, "commit"=>"Submit"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mManufacturer Exists (0.6ms)[0m  SELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Dodge' LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "manufacturers" ("name", "country") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Dodge"], ["country", "USA"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/manufacturers
+Completed 302 Found in 15ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 10:29:53 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered manufacturers/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 82ms (Views: 81.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-09-25 10:29:55 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 127ms (Views: 126.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/manufacturers" for ::1 at 2015-09-25 10:30:01 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+VeqFqfbxM3b4+Cw5OoYLqSL4cp1ozvqrNBxZkXfYyYpB0eKelA3YiH/JZlnpbdl7oPBfDhfS6Ll4D8zp1/mIw==", "manufacturer"=>{"name"=>"Toyota", "country"=>"Japan"}, "commit"=>"Submit"}
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mManufacturer Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Toyota' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "manufacturers" ("name", "country") VALUES ($1, $2) RETURNING "id"  [["name", "Toyota"], ["country", "Japan"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/manufacturers
+Completed 302 Found in 5ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 10:30:01 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[35mManufacturer Load (0.4ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered manufacturers/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 66ms (Views: 65.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-09-25 10:30:03 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 130ms (Views: 129.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/manufacturers" for ::1 at 2015-09-25 10:30:16 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"i79Yh0LAd011l4VsQczziqaYeQ5C0eFsJ/zYOSKw8WNb77Ubn0uE4o+LQEXCg1zB7JBZuA8tkSRuzJZswDB0Zg==", "manufacturer"=>{"name"=>"Mercedes", "country"=>"Germany"}, "commit"=>"Submit"}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mManufacturer Exists (0.3ms)[0m  SELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Mercedes' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "manufacturers" ("name", "country") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Mercedes"], ["country", "Germany"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/manufacturers
+Completed 302 Found in 4ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 10:30:16 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered manufacturers/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 62ms (Views: 61.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:32:28 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (7.6ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined local variable or method `manufactuers_path' for #<#<Class:0x007fbdfd759a28>:0x007fbdfd7590f0>):
+    1: <%= link_to "Add a Manufacturer", new_manufacturer_path %>
+    2: <hr />
+    3: <%= link_to "All Manufacturers", manufactuers_path %>
+    4: <hr />
+    5: <%= link_to "Add a Car", new_car_path %>
+    6: <hr />
+  app/views/homes/index.html.erb:3:in `_app_views_homes_index_html_erb___522790147802682331_70226988961280'
+
+
+  Rendered /Users/Sasquatch/.gem/ruby/2.0.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.7ms)
+  Rendered /Users/Sasquatch/.gem/ruby/2.0.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /Users/Sasquatch/.gem/ruby/2.0.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /Users/Sasquatch/.gem/ruby/2.0.0/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (24.4ms)
+  Rendered /Users/Sasquatch/.rubies/ruby-2.0.0-p576/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/Sasquatch/.rubies/ruby-2.0.0-p576/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/Sasquatch/.rubies/ruby-2.0.0-p576/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/Sasquatch/.rubies/ruby-2.0.0-p576/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/Sasquatch/.rubies/ruby-2.0.0-p576/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (19.8ms)
+  Rendered /Users/Sasquatch/.rubies/ruby-2.0.0-p576/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/Sasquatch/.rubies/ruby-2.0.0-p576/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/Sasquatch/.rubies/ruby-2.0.0-p576/lib/ruby/gems/2.0.0/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (46.4ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:32:35 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 127ms (Views: 126.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/foundation_and_overrides.self-6c4178291e2969558303b189df2f65b6ae4c2cc8d5a408f27c2770c0e963cc6d.css?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/application.self-167193cd81d9330d9ddb5c4ec7b44214fea529aa8a94f3a86e6526e4f652fc02.css?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/assets/application.self-1509cb3433bf7f60a75710bd4d8561d25423676b3c4d4a21914940bf07b8869a.js?body=1" for ::1 at 2015-09-25 10:32:35 -0400
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-09-25 10:32:38 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 129ms (Views: 128.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 10:32:41 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[35mManufacturer Load (0.4ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered manufacturers/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 65ms (Views: 64.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 10:32:43 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 150ms (Views: 139.4ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 10:32:45 -0400
+Processing by CarsController#index as HTML
+  [1m[35mCar Load (1.7ms)[0m  SELECT "cars".* FROM "cars"
+  Rendered cars/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 67ms (Views: 65.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 10:32:48 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 69ms (Views: 68.5ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/cars" for ::1 at 2015-09-25 10:33:02 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"A0j0rBii6KO0i6z4UlB1em8Fr9kP5NEpsFg3ELYNRmfTGBkwxSkbDE6XadHRH9oxJQ2Pb0IYoWH5aHlFVI3DYg==", "car"=>{"manufacturer_id"=>"1", "year"=>"2012", "mileage"=>"50000", "color"=>"black", "description"=>"Badass Dodge Charger"}, "commit"=>"Submit"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "cars" ("color", "year", "mileage", "description", "manufacturer_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["color", "black"], ["year", 2012], ["mileage", 50000], ["description", "Badass Dodge Charger"], ["manufacturer_id", 1]]
+  [1m[35m (0.8ms)[0m  COMMIT
+Redirected to http://localhost:3000/cars
+Completed 302 Found in 6ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 10:33:02 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.3ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (8.1ms)
+Completed 200 OK in 73ms (Views: 71.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:33:09 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 69ms (Views: 68.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 10:33:16 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.3ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 130ms (Views: 129.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:33:23 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 70ms (Views: 70.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 10:33:25 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 142ms (Views: 140.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:33:26 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 67ms (Views: 67.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-09-25 10:33:27 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 68ms (Views: 67.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:33:28 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 139ms (Views: 139.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:34:12 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 72ms (Views: 72.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/foundation_and_overrides.self-6c4178291e2969558303b189df2f65b6ae4c2cc8d5a408f27c2770c0e963cc6d.css?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/application.self-167193cd81d9330d9ddb5c4ec7b44214fea529aa8a94f3a86e6526e4f652fc02.css?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for ::1 at 2015-09-25 10:34:12 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for ::1 at 2015-09-25 10:34:13 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for ::1 at 2015-09-25 10:34:13 -0400
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for ::1 at 2015-09-25 10:34:13 -0400
+
+
+Started GET "/assets/application.self-1509cb3433bf7f60a75710bd4d8561d25423676b3c4d4a21914940bf07b8869a.js?body=1" for ::1 at 2015-09-25 10:34:13 -0400
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-09-25 10:34:15 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 68ms (Views: 67.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 10:34:16 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[35mManufacturer Load (0.4ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered manufacturers/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 62ms (Views: 61.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-09-25 10:34:18 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 140ms (Views: 140.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 10:34:19 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered manufacturers/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 74ms (Views: 73.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:34:21 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 64ms (Views: 63.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 10:34:21 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 150ms (Views: 149.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 10:34:52 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 151ms (Views: 150.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.self-d953454c680d71254a93a191c9c88a0b51b07e341362a679393c11cf3b553ce4.css?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation_and_overrides.self-6c4178291e2969558303b189df2f65b6ae4c2cc8d5a408f27c2770c0e963cc6d.css?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/assets/application.self-1509cb3433bf7f60a75710bd4d8561d25423676b3c4d4a21914940bf07b8869a.js?body=1" for ::1 at 2015-09-25 10:34:52 -0400
+
+
+Started GET "/cars" for ::1 at 2015-09-25 10:34:57 -0400
+Processing by CarsController#index as HTML
+  [1m[35mCar Load (0.3ms)[0m  SELECT "cars".* FROM "cars"
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 139ms (Views: 138.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 10:34:58 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 78ms (Views: 77.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:35:00 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 68ms (Views: 67.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 10:35:03 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.3ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 135ms (Views: 133.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:35:05 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 67ms (Views: 67.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 10:35:07 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered manufacturers/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 70ms (Views: 69.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:35:09 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 141ms (Views: 140.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-09-25 10:35:09 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 64ms (Views: 64.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:35:10 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 137ms (Views: 137.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 10:35:11 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered manufacturers/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 71ms (Views: 70.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-09-25 10:35:13 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 69ms (Views: 68.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 10:35:15 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered manufacturers/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 133ms (Views: 132.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:35:17 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 66ms (Views: 65.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 10:35:18 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 148ms (Views: 147.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 10:35:20 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.3ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 68ms (Views: 67.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 10:35:24 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 72ms (Views: 71.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:35:25 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 141ms (Views: 141.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 10:35:27 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.4ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 73ms (Views: 72.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:35:31 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 66ms (Views: 65.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 10:36:02 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 70ms (Views: 68.9ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/cars" for ::1 at 2015-09-25 10:36:11 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"T6lfkIfsZeUFhwDvkQhXViEtzpe+gDuM9E6h5FmwAnef+bIMWmeWSv+bxcYSR/gdayXuIfN8S8S9fu+xuzCHcg==", "car"=>{"manufacturer_id"=>"1", "year"=>"1909", "mileage"=>"20000", "color"=>"blue", "description"=>""}, "commit"=>"Submit"}
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 72ms (Views: 68.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 10:36:16 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 130ms (Views: 129.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 10:36:17 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.3ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 67ms (Views: 65.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 10:51:20 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.4ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (15.9ms)
+Completed 200 OK in 145ms (Views: 138.5ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-25 10:51:20 -0400
+
+
+Started GET "/assets/foundation_and_overrides.self-6c4178291e2969558303b189df2f65b6ae4c2cc8d5a408f27c2770c0e963cc6d.css?body=1" for ::1 at 2015-09-25 10:51:20 -0400
+
+
+Started GET "/assets/application.self-d953454c680d71254a93a191c9c88a0b51b07e341362a679393c11cf3b553ce4.css?body=1" for ::1 at 2015-09-25 10:51:20 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-25 10:51:20 -0400
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for ::1 at 2015-09-25 10:51:20 -0400
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for ::1 at 2015-09-25 10:51:20 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for ::1 at 2015-09-25 10:51:20 -0400
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for ::1 at 2015-09-25 10:51:20 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for ::1 at 2015-09-25 10:51:20 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for ::1 at 2015-09-25 10:51:20 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for ::1 at 2015-09-25 10:51:20 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for ::1 at 2015-09-25 10:51:20 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for ::1 at 2015-09-25 10:51:21 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for ::1 at 2015-09-25 10:51:21 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for ::1 at 2015-09-25 10:51:21 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for ::1 at 2015-09-25 10:51:21 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for ::1 at 2015-09-25 10:51:21 -0400
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for ::1 at 2015-09-25 10:51:21 -0400
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for ::1 at 2015-09-25 10:51:21 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for ::1 at 2015-09-25 10:51:21 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for ::1 at 2015-09-25 10:51:21 -0400
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for ::1 at 2015-09-25 10:51:21 -0400
+
+
+Started GET "/assets/application.self-1509cb3433bf7f60a75710bd4d8561d25423676b3c4d4a21914940bf07b8869a.js?body=1" for ::1 at 2015-09-25 10:51:21 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 10:51:23 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 138ms (Views: 137.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/cars" for ::1 at 2015-09-25 10:51:32 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"yt5Q13yPU44sTiRe+Q0LLN6K93rPe7uDcXdkG2WKOAoajr1LoQSgIdZS4Xd6QqRnlILXzIKHy8s4RypOhwq9Dw==", "car"=>{"manufacturer_id"=>"1", "year"=>"2015", "mileage"=>"200000", "color"=>"Red", "description"=>"Meh"}, "commit"=>"Submit"}
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "cars" ("color", "year", "mileage", "description", "manufacturer_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["color", "Red"], ["year", 2015], ["mileage", 200000], ["description", "Meh"], ["manufacturer_id", 1]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/cars
+Completed 302 Found in 4ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 10:51:32 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.3ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 70ms (Views: 69.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 10:51:41 -0400
+Processing by CarsController#index as HTML
+  [1m[35mCar Load (0.5ms)[0m  SELECT "cars".* FROM "cars"
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 76ms (Views: 74.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/foundation_and_overrides.self-6c4178291e2969558303b189df2f65b6ae4c2cc8d5a408f27c2770c0e963cc6d.css?body=1" for ::1 at 2015-09-25 10:51:41 -0400
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-25 10:51:41 -0400
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for ::1 at 2015-09-25 10:51:41 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-25 10:51:41 -0400
+
+
+Started GET "/assets/application.self-d953454c680d71254a93a191c9c88a0b51b07e341362a679393c11cf3b553ce4.css?body=1" for ::1 at 2015-09-25 10:51:41 -0400
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for ::1 at 2015-09-25 10:51:41 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/assets/application.self-1509cb3433bf7f60a75710bd4d8561d25423676b3c4d4a21914940bf07b8869a.js?body=1" for ::1 at 2015-09-25 10:51:42 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 10:51:44 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 61ms (Views: 60.0ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/cars" for ::1 at 2015-09-25 10:52:04 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"//PZdWZY/VBDHJ33Q7zOmjyPDINLNHZvvZ8CraxYRwovozTpu9MO/7kAWN7A82HRdocsNQbIBif0r0z4TtjCDw==", "car"=>{"manufacturer_id"=>"2", "year"=>"1986", "mileage"=>"505000", "color"=>"purple", "description"=>"Old as shit!"}, "commit"=>"Submit"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "cars" ("color", "year", "mileage", "description", "manufacturer_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["color", "purple"], ["year", 1986], ["mileage", 505000], ["description", "Old as shit!"], ["manufacturer_id", 2]]
+  [1m[35m (0.3ms)[0m  COMMIT
+Redirected to http://localhost:3000/cars
+Completed 302 Found in 3ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 10:52:04 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.3ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 2]]
+  Rendered cars/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 131ms (Views: 129.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 11:19:14 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 107ms (Views: 107.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-09-25 11:19:16 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 146ms (Views: 145.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/manufacturers" for ::1 at 2015-09-25 11:19:22 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"cm3FHS/UBW20gBJq9XxRDc/eKXqXW+T3CsZYenjXE6WiPSiB8l/2wk6c10N2M/5GhdYJzNqnlL9D9hYvmleWoA==", "manufacturer"=>{"name"=>"Ford", "country"=>"USA"}, "commit"=>"Submit"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mManufacturer Exists (0.6ms)[0m  SELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Ford' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "manufacturers" ("name", "country") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Ford"], ["country", "USA"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/manufacturers
+Completed 302 Found in 6ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 11:19:22 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered manufacturers/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 61ms (Views: 60.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-09-25 11:19:24 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 61ms (Views: 60.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/manufacturers" for ::1 at 2015-09-25 11:19:31 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tiM2nBpjfEjd78EYOIbFkYTXkmR/KmHz+CQbT903Ci9mc9sAx+iP5yfzBDG7yWrazt+y0jLWEbuxFFUaP7ePKg==", "manufacturer"=>{"name"=>"Chevrolet", "country"=>"USA"}, "commit"=>"Submit"}
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mManufacturer Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Chevrolet' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "manufacturers" ("name", "country") VALUES ($1, $2) RETURNING "id"  [["name", "Chevrolet"], ["country", "USA"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/manufacturers
+Completed 302 Found in 4ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 11:19:31 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered manufacturers/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 129ms (Views: 128.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-09-25 11:19:33 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 64ms (Views: 63.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/manufacturers" for ::1 at 2015-09-25 11:19:38 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"HHBkwuDYsNRFb1gYGLv8rwEUpWce7tNQAXIn8R282pzMIIlePVNDe79znTGb9FPkSxyF0VMSoxhIQmmk/zxfmQ==", "manufacturer"=>{"name"=>"Saab", "country"=>"Sweden"}, "commit"=>"Submit"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mManufacturer Exists (0.4ms)[0m  SELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Saab' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "manufacturers" ("name", "country") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Saab"], ["country", "Sweden"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/manufacturers
+Completed 302 Found in 4ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 11:19:38 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered manufacturers/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 128ms (Views: 127.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-09-25 11:19:40 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 71ms (Views: 70.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/manufacturers" for ::1 at 2015-09-25 11:19:45 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZCBlU65cPsM3S3Su68pS6pgLUGQpARGnEphpTK693BO0cIjPc9fNbM1XsYdohf2h0gNw0mT9Ye9bqCcZTD1ZFg==", "manufacturer"=>{"name"=>"Volvo", "country"=>"Norway"}, "commit"=>"Submit"}
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mManufacturer Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Volvo' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "manufacturers" ("name", "country") VALUES ($1, $2) RETURNING "id"  [["name", "Volvo"], ["country", "Norway"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/manufacturers
+Completed 302 Found in 4ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 11:19:45 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered manufacturers/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 71ms (Views: 70.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-09-25 11:19:48 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 140ms (Views: 139.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/manufacturers" for ::1 at 2015-09-25 11:19:53 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BAYaz8Hp7tbIlhNejPxynhz0UNF3L2ARXiHXIfv0VGXUVvdTHGIdeTKK1ncPs93VVvxwZzrTEFkXEZl0GXTRYA==", "manufacturer"=>{"name"=>"Nissan", "country"=>"Japan"}, "commit"=>"Submit"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mManufacturer Exists (0.3ms)[0m  SELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Nissan' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "manufacturers" ("name", "country") VALUES ($1, $2) RETURNING "id"[0m  [["name", "Nissan"], ["country", "Japan"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/manufacturers
+Completed 302 Found in 4ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 11:19:53 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered manufacturers/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 66ms (Views: 65.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 11:19:56 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 66ms (Views: 66.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 11:19:57 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 140ms (Views: 139.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/cars" for ::1 at 2015-09-25 11:20:23 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"/6OP1tWTrXt7n7bIT/Sy9yOx7TbFd4iSQ+gBQRp6BdMv82JKCBhe1IGDc+HMux28abnNgIiL+NoK2E8U+PqA1g==", "car"=>{"manufacturer_id"=>"5", "year"=>"2010", "mileage"=>"80000", "color"=>"Red", "description"=>"Silverado Pickup, clean"}, "commit"=>"Submit"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "cars" ("color", "year", "mileage", "description", "manufacturer_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["color", "Red"], ["year", 2010], ["mileage", 80000], ["description", "Silverado Pickup, clean"], ["manufacturer_id", 5]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/cars
+Completed 302 Found in 4ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 11:20:23 -0400
+Processing by CarsController#index as HTML
+  [1m[35mCar Load (0.3ms)[0m  SELECT "cars".* FROM "cars"
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 5]]
+  Rendered cars/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 69ms (Views: 67.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 11:20:29 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.4ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 132ms (Views: 131.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/cars" for ::1 at 2015-09-25 11:20:43 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ybe9yze6chGi4Ta0Nw9FG5LFVioCGQ/7fp994M4f7uAZ51BX6jGBvlj98520QOpQ2M12nE/lf7M3rzO1LJ9r5Q==", "car"=>{"manufacturer_id"=>"3", "year"=>"2016", "mileage"=>"10", "color"=>"Black", "description"=>"Perfect, Brand New"}, "commit"=>"Submit"}
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "cars" ("color", "year", "mileage", "description", "manufacturer_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["color", "Black"], ["year", 2016], ["mileage", 10], ["description", "Perfect, Brand New"], ["manufacturer_id", 3]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/cars
+Completed 302 Found in 4ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 11:20:43 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.3ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 3]]
+  Rendered cars/index.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 76ms (Views: 74.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 11:31:08 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.4ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 3]]
+  Rendered cars/index.html.erb within layouts/application (16.2ms)
+Completed 200 OK in 171ms (Views: 164.5ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/assets/foundation_and_overrides.self-6c4178291e2969558303b189df2f65b6ae4c2cc8d5a408f27c2770c0e963cc6d.css?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/application.self-d953454c680d71254a93a191c9c88a0b51b07e341362a679393c11cf3b553ce4.css?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/assets/application.self-1509cb3433bf7f60a75710bd4d8561d25423676b3c4d4a21914940bf07b8869a.js?body=1" for ::1 at 2015-09-25 11:31:08 -0400
+
+
+Started GET "/cars" for ::1 at 2015-09-25 11:31:12 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.3ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 3]]
+  Rendered cars/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 137ms (Views: 135.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/application.self-d953454c680d71254a93a191c9c88a0b51b07e341362a679393c11cf3b553ce4.css?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation_and_overrides.self-6c4178291e2969558303b189df2f65b6ae4c2cc8d5a408f27c2770c0e963cc6d.css?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/assets/application.self-1509cb3433bf7f60a75710bd4d8561d25423676b3c4d4a21914940bf07b8869a.js?body=1" for ::1 at 2015-09-25 11:31:12 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 11:31:14 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 69ms (Views: 68.5ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/cars" for ::1 at 2015-09-25 11:31:29 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jplG82CUVna0bvQTrWOMvKLsAAJL21goismpqxuDVBdeyatvvR+l2U5yMTouLCP36OQgtAYnKGDD+ef++QPREg==", "car"=>{"manufacturer_id"=>"1", "year"=>"1955", "mileage"=>"10000", "color"=>"Red", "description"=>"classic"}, "commit"=>"Submit"}
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "cars" ("color", "year", "mileage", "description", "manufacturer_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["color", "Red"], ["year", 1955], ["mileage", 10000], ["description", "classic"], ["manufacturer_id", 1]]
+  [1m[35m (0.3ms)[0m  COMMIT
+Redirected to http://localhost:3000/cars
+Completed 302 Found in 4ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 11:31:29 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.3ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 128ms (Views: 126.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 11:32:10 -0400
+Processing by CarsController#index as HTML
+  [1m[35mCar Load (0.4ms)[0m  SELECT "cars".* FROM "cars"
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (16.4ms)
+Completed 200 OK in 76ms (Views: 69.4ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/assets/foundation_and_overrides.self-6c4178291e2969558303b189df2f65b6ae4c2cc8d5a408f27c2770c0e963cc6d.css?body=1" for ::1 at 2015-09-25 11:32:10 -0400
+
+
+Started GET "/assets/application.self-d953454c680d71254a93a191c9c88a0b51b07e341362a679393c11cf3b553ce4.css?body=1" for ::1 at 2015-09-25 11:32:10 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-25 11:32:10 -0400
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for ::1 at 2015-09-25 11:32:10 -0400
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for ::1 at 2015-09-25 11:32:10 -0400
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-25 11:32:10 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for ::1 at 2015-09-25 11:32:10 -0400
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for ::1 at 2015-09-25 11:32:10 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for ::1 at 2015-09-25 11:32:10 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for ::1 at 2015-09-25 11:32:10 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for ::1 at 2015-09-25 11:32:10 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for ::1 at 2015-09-25 11:32:11 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for ::1 at 2015-09-25 11:32:11 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for ::1 at 2015-09-25 11:32:11 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for ::1 at 2015-09-25 11:32:11 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for ::1 at 2015-09-25 11:32:11 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for ::1 at 2015-09-25 11:32:11 -0400
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for ::1 at 2015-09-25 11:32:11 -0400
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for ::1 at 2015-09-25 11:32:11 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for ::1 at 2015-09-25 11:32:11 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for ::1 at 2015-09-25 11:32:11 -0400
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for ::1 at 2015-09-25 11:32:11 -0400
+
+
+Started GET "/assets/application.self-1509cb3433bf7f60a75710bd4d8561d25423676b3c4d4a21914940bf07b8869a.js?body=1" for ::1 at 2015-09-25 11:32:11 -0400
+
+
+Started GET "/cars" for ::1 at 2015-09-25 11:33:00 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.4ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (17.0ms)
+Completed 200 OK in 152ms (Views: 145.2ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/assets/application.self-d953454c680d71254a93a191c9c88a0b51b07e341362a679393c11cf3b553ce4.css?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation_and_overrides.self-6c4178291e2969558303b189df2f65b6ae4c2cc8d5a408f27c2770c0e963cc6d.css?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/assets/application.self-1509cb3433bf7f60a75710bd4d8561d25423676b3c4d4a21914940bf07b8869a.js?body=1" for ::1 at 2015-09-25 11:33:01 -0400
+
+
+Started GET "/cars" for ::1 at 2015-09-25 11:34:31 -0400
+Processing by CarsController#index as HTML
+  [1m[35mCar Load (0.3ms)[0m  SELECT "cars".* FROM "cars"
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 67ms (Views: 65.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/foundation_and_overrides.self-6c4178291e2969558303b189df2f65b6ae4c2cc8d5a408f27c2770c0e963cc6d.css?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/application.self-d953454c680d71254a93a191c9c88a0b51b07e341362a679393c11cf3b553ce4.css?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/assets/application.self-1509cb3433bf7f60a75710bd4d8561d25423676b3c4d4a21914940bf07b8869a.js?body=1" for ::1 at 2015-09-25 11:34:31 -0400
+
+
+Started GET "/cars" for ::1 at 2015-09-25 11:35:53 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.4ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (17.4ms)
+Completed 200 OK in 93ms (Views: 86.3ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/assets/foundation_and_overrides.self-6c4178291e2969558303b189df2f65b6ae4c2cc8d5a408f27c2770c0e963cc6d.css?body=1" for ::1 at 2015-09-25 11:35:53 -0400
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for ::1 at 2015-09-25 11:35:53 -0400
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-25 11:35:53 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/application.self-d953454c680d71254a93a191c9c88a0b51b07e341362a679393c11cf3b553ce4.css?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/assets/application.self-1509cb3433bf7f60a75710bd4d8561d25423676b3c4d4a21914940bf07b8869a.js?body=1" for ::1 at 2015-09-25 11:35:54 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 11:43:19 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 83ms (Views: 82.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/cars" for ::1 at 2015-09-25 11:43:30 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wodQeFMC6qu/M+47L64WZ6iZ3hhmlnQ3ak9ouRUZKWES173kjokZBEUvKxKs4bks4pH+ritqBH8jfybs95msZA==", "car"=>{"manufacturer_id"=>"1", "year"=>"2016", "mileage"=>"600000", "color"=>"red", "description"=>"I drive a lot..."}, "commit"=>"Submit"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "cars" ("color", "year", "mileage", "description", "manufacturer_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["color", "red"], ["year", 2016], ["mileage", 600000], ["description", "I drive a lot..."], ["manufacturer_id", 1]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/cars
+Completed 302 Found in 4ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 11:43:30 -0400
+Processing by CarsController#index as HTML
+  [1m[35mCar Load (0.3ms)[0m  SELECT "cars".* FROM "cars"
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 129ms (Views: 128.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 12:06:36 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.4ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 113ms (Views: 100.7ms | ActiveRecord: 4.5ms)
+
+
+Started POST "/cars" for ::1 at 2015-09-25 12:06:47 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"/NdM25phRfCQDvsSsMkdkRfDjGcBdt8GcN1B9Pla2ggsh6FHR+q2X2oSPjszhrLaXcus0UyKr0457Q+hG9pfDQ==", "car"=>{"manufacturer_id"=>"1", "year"=>"2015", "mileage"=>"100", "color"=>"blue", "description"=>""}, "commit"=>"Submit"}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cars" ("color", "year", "mileage", "description", "manufacturer_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["color", "blue"], ["year", 2015], ["mileage", 100], ["description", ""], ["manufacturer_id", 1]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/cars
+Completed 302 Found in 4ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 12:06:47 -0400
+Processing by CarsController#index as HTML
+  [1m[35mCar Load (0.3ms)[0m  SELECT "cars".* FROM "cars"
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 145ms (Views: 143.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 12:16:40 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.5ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (19.8ms)
+Completed 200 OK in 110ms (Views: 102.5ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/assets/foundation_and_overrides.self-6c4178291e2969558303b189df2f65b6ae4c2cc8d5a408f27c2770c0e963cc6d.css?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.self-ee5396739ce46beb039f26ea629172a74143752d74f703c6c3b219fc52aecf73.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.abide.self-f8b56c707a79139807305a5f7efc2aaa0848f0c677abcc056496f507e0192b79.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/application.self-d953454c680d71254a93a191c9c88a0b51b07e341362a679393c11cf3b553ce4.css?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.accordion.self-d55abdcb0a7a29512be2f31f63d418cc8cc4505a0a3c71946d25484b0a0b3f4e.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.alert.self-fbde7afb61e8ffd8ab9b717f0bed1e58cb9e0144a25cc773fea634d5554f62cd.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.clearing.self-54610737b435a97590fcb176848c3c7a44c4d55d369894260fa7c28c97a70a23.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.dropdown.self-c9ee29909e266373e5e814a73fc6ea062245ddd29466d35d232448f73350d78a.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.equalizer.self-7aa743bf4660deb2fb2f601c112806a1703c430067531da3f41e4afffe19fee9.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.interchange.self-dad8415355087cb21a16fa44bac20d602344d52de5aca9e588e3588fce5dd5a7.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.joyride.self-0a5271728699423f583dd5b3b8a11bfe0dc9fb5044446bcf3218ef8ca906a82d.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.magellan.self-a50193f172f11e57b373c3001072ba2d6b34b857ab251e9ded30af5242855687.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.offcanvas.self-75bffd0c7f4f0d2992ab95f0cc6959282ebb5807da70123d40c01d76e230ec88.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.orbit.self-f8d30eb1717c874db26723f9e07901ec0a325d59263f1404ee83a616bb597ad2.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.reveal.self-95f01feb3e25e47b58b78da0021ae2fffafdee70846682067c180e0e10f7b095.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.slider.self-8911a7352cb577b6b7973b0734d57d2b624c79286558ffa36fcac0c29b2d0bee.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.tab.self-9bf6791513d1b20e213bb1aee3df0bc17128c7e18421258dc68a2a4ccabe1647.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.tooltip.self-834156796c253580629cfffc720bdc3d191b1e5a5a6ddbc1102ecd08c876516c.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation/foundation.topbar.self-105416f061562f07c6a0a8057d68282fdc1eeb5dc306713fcae6c9a53001fc55.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/foundation.self-abe4ee7a105042f73b12b1f1a28788522d2f253445a475a94ab4d6e1f7b0ec52.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/assets/application.self-1509cb3433bf7f60a75710bd4d8561d25423676b3c4d4a21914940bf07b8869a.js?body=1" for ::1 at 2015-09-25 12:16:40 -0400
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 12:16:42 -0400
+Processing by CarsController#new as HTML
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered cars/new.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 70ms (Views: 69.5ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/cars" for ::1 at 2015-09-25 12:16:56 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tTxWOCd92YjsBdwZhi6jYc+EgJQ415K2sfkNT48GsD5lbLuk+vYqJxYZGTAFYQwqhYygInUr4v74yUMabYY1Ow==", "car"=>{"manufacturer_id"=>"1", "year"=>"2013", "mileage"=>"123000", "color"=>"red", "description"=>"good"}, "commit"=>"Submit"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cars" ("color", "year", "mileage", "description", "manufacturer_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["color", "red"], ["year", 2013], ["mileage", 123000], ["description", "good"], ["manufacturer_id", 1]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/cars
+Completed 302 Found in 3ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 12:16:56 -0400
+Processing by CarsController#index as HTML
+  [1m[35mCar Load (0.3ms)[0m  SELECT "cars".* FROM "cars"
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered cars/index.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 156ms (Views: 154.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 12:19:16 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 67ms (Views: 66.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 12:19:18 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[35mManufacturer Load (0.3ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered manufacturers/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 134ms (Views: 133.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 12:19:20 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 74ms (Views: 74.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/manufacturers/new" for ::1 at 2015-09-25 12:19:21 -0400
+Processing by ManufacturersController#new as HTML
+  Rendered manufacturers/new.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 62ms (Views: 62.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/manufacturers" for ::1 at 2015-09-25 12:19:33 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OmaMaTYl7oSx05fl/zvhArw10ymRrw96+8ndijkFhoPqNmH1664dK0vPUsx8dE5J9j3zn9xTfzKy+ZPf24UDhg==", "manufacturer"=>{"name"=>"Dodge", "country"=>"USA"}, "commit"=>"Submit"}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mManufacturer Exists (0.4ms)[0m  SELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Dodge' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  Rendered manufacturers/new.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 139ms (Views: 134.3ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/manufacturers" for ::1 at 2015-09-25 12:19:41 -0400
+Processing by ManufacturersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wE2IEgtix/tu56EHSB9savCk23vYduk70PwSZb7qA6cQHWWO1uk0VJT7ZC7LUMMhuqz7zZWKmXOZzFwwXGqGog==", "manufacturer"=>{"name"=>"Oldsmobile", "country"=>"USA"}, "commit"=>"Submit"}
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mManufacturer Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "manufacturers" WHERE "manufacturers"."name" = 'Oldsmobile' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "manufacturers" ("name", "country") VALUES ($1, $2) RETURNING "id"  [["name", "Oldsmobile"], ["country", "USA"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/manufacturers
+Completed 302 Found in 5ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/manufacturers" for ::1 at 2015-09-25 12:19:41 -0400
+Processing by ManufacturersController#index as HTML
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT "manufacturers".* FROM "manufacturers"
+  Rendered manufacturers/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 71ms (Views: 70.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2015-09-25 12:19:45 -0400
+Processing by HomesController#index as HTML
+  Rendered homes/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 138ms (Views: 137.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/cars/new" for ::1 at 2015-09-25 12:19:47 -0400
+Processing by CarsController#new as HTML
+  [1m[36mManufacturer Load (0.3ms)[0m  [1mSELECT "manufacturers".* FROM "manufacturers"[0m
+  Rendered cars/new.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 77ms (Views: 76.0ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/cars" for ::1 at 2015-09-25 12:20:07 -0400
+Processing by CarsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"sxuwSATGxoIWADVgpowVdEzWfpk+X43k2v0WaunyXOljS13U2U01Lewc8Eklw7o/Bt5eL3Oj/ayTzVg/C3LZ7A==", "car"=>{"manufacturer_id"=>"9", "year"=>"1988", "mileage"=>"215000", "color"=>"blue", "description"=>"my first car, a cutlass ciera"}, "commit"=>"Submit"}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "cars" ("color", "year", "mileage", "description", "manufacturer_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["color", "blue"], ["year", 1988], ["mileage", 215000], ["description", "my first car, a cutlass ciera"], ["manufacturer_id", 9]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/cars
+Completed 302 Found in 4ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/cars" for ::1 at 2015-09-25 12:20:07 -0400
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.3ms)[0m  [1mSELECT "cars".* FROM "cars"[0m
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mManufacturer Load (0.2ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mManufacturer Load (0.2ms)[0m  [1mSELECT  "manufacturers".* FROM "manufacturers" WHERE "manufacturers"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  Rendered cars/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 73ms (Views: 71.8ms | ActiveRecord: 1.3ms)
